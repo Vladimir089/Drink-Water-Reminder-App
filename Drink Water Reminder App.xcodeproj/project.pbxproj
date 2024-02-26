@@ -10,9 +10,11 @@
 		15AF6D022B8CA76900F9ADDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */; };
 		15AF6D042B8CA76900F9ADDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */; };
 		15AF6D062B8CA76900F9ADDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D052B8CA76900F9ADDD /* ViewController.swift */; };
-		15AF6D092B8CA76900F9ADDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AF6D072B8CA76900F9ADDD /* Main.storyboard */; };
 		15AF6D0B2B8CA76B00F9ADDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15AF6D0A2B8CA76B00F9ADDD /* Assets.xcassets */; };
 		15AF6D0E2B8CA76B00F9ADDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AF6D0C2B8CA76B00F9ADDD /* LaunchScreen.storyboard */; };
+		15AF6D192B8CACA200F9ADDD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D182B8CACA200F9ADDD /* MainView.swift */; };
+		15AF6D1C2B8CB16F00F9ADDD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15AF6D1B2B8CB16F00F9ADDD /* SnapKit */; };
+		15AF6D1E2B8CB16F00F9ADDD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 15AF6D1D2B8CB16F00F9ADDD /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +22,10 @@
 		15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		15AF6D052B8CA76900F9ADDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		15AF6D082B8CA76900F9ADDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15AF6D0A2B8CA76B00F9ADDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15AF6D0D2B8CA76B00F9ADDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15AF6D0F2B8CA76B00F9ADDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15AF6D182B8CACA200F9ADDD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15AF6D1C2B8CB16F00F9ADDD /* SnapKit in Frameworks */,
+				15AF6D1E2B8CB16F00F9ADDD /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +60,39 @@
 		15AF6D002B8CA76900F9ADDD /* Drink Water Reminder App */ = {
 			isa = PBXGroup;
 			children = (
-				15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */,
-				15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */,
-				15AF6D052B8CA76900F9ADDD /* ViewController.swift */,
-				15AF6D072B8CA76900F9ADDD /* Main.storyboard */,
-				15AF6D0A2B8CA76B00F9ADDD /* Assets.xcassets */,
-				15AF6D0C2B8CA76B00F9ADDD /* LaunchScreen.storyboard */,
-				15AF6D0F2B8CA76B00F9ADDD /* Info.plist */,
+				15AF6D172B8CA83300F9ADDD /* Controller */,
+				15AF6D162B8CA82B00F9ADDD /* View */,
+				15AF6D152B8CA82300F9ADDD /* Model */,
 			);
 			path = "Drink Water Reminder App";
+			sourceTree = "<group>";
+		};
+		15AF6D152B8CA82300F9ADDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */,
+				15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */,
+				15AF6D0F2B8CA76B00F9ADDD /* Info.plist */,
+				15AF6D0A2B8CA76B00F9ADDD /* Assets.xcassets */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15AF6D162B8CA82B00F9ADDD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				15AF6D0C2B8CA76B00F9ADDD /* LaunchScreen.storyboard */,
+				15AF6D182B8CACA200F9ADDD /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		15AF6D172B8CA83300F9ADDD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				15AF6D052B8CA76900F9ADDD /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +111,10 @@
 			dependencies = (
 			);
 			name = "Drink Water Reminder App";
+			packageProductDependencies = (
+				15AF6D1B2B8CB16F00F9ADDD /* SnapKit */,
+				15AF6D1D2B8CB16F00F9ADDD /* SnapKit-Dynamic */,
+			);
 			productName = "Drink Water Reminder App";
 			productReference = 15AF6CFE2B8CA76900F9ADDD /* Drink Water Reminder App.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +143,9 @@
 				Base,
 			);
 			mainGroup = 15AF6CF52B8CA76900F9ADDD;
+			packageReferences = (
+				15AF6D1A2B8CB16F00F9ADDD /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 15AF6CFF2B8CA76900F9ADDD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +162,6 @@
 			files = (
 				15AF6D0E2B8CA76B00F9ADDD /* LaunchScreen.storyboard in Resources */,
 				15AF6D0B2B8CA76B00F9ADDD /* Assets.xcassets in Resources */,
-				15AF6D092B8CA76900F9ADDD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15AF6D062B8CA76900F9ADDD /* ViewController.swift in Sources */,
+				15AF6D192B8CACA200F9ADDD /* MainView.swift in Sources */,
 				15AF6D022B8CA76900F9ADDD /* AppDelegate.swift in Sources */,
 				15AF6D042B8CA76900F9ADDD /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +182,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		15AF6D072B8CA76900F9ADDD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				15AF6D082B8CA76900F9ADDD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		15AF6D0C2B8CA76B00F9ADDD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,10 +321,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6YA7577C98;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Drink Water Reminder App/Info.plist";
+				INFOPLIST_FILE = "Drink Water Reminder App/Model/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,9 +334,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "k.Drink-Water-Reminder-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,10 +353,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6YA7577C98;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Drink Water Reminder App/Info.plist";
+				INFOPLIST_FILE = "Drink Water Reminder App/Model/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,9 +366,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "k.Drink-Water-Reminder-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -363,6 +398,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		15AF6D1A2B8CB16F00F9ADDD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15AF6D1B2B8CB16F00F9ADDD /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15AF6D1A2B8CB16F00F9ADDD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		15AF6D1D2B8CB16F00F9ADDD /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15AF6D1A2B8CB16F00F9ADDD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15AF6CF62B8CA76900F9ADDD /* Project object */;
 }
