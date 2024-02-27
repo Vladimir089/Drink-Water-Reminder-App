@@ -14,7 +14,6 @@
 		15AF6D0E2B8CA76B00F9ADDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AF6D0C2B8CA76B00F9ADDD /* LaunchScreen.storyboard */; };
 		15AF6D192B8CACA200F9ADDD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D182B8CACA200F9ADDD /* MainView.swift */; };
 		15AF6D1C2B8CB16F00F9ADDD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15AF6D1B2B8CB16F00F9ADDD /* SnapKit */; };
-		15AF6D1E2B8CB16F00F9ADDD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 15AF6D1D2B8CB16F00F9ADDD /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +33,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				15AF6D1C2B8CB16F00F9ADDD /* SnapKit in Frameworks */,
-				15AF6D1E2B8CB16F00F9ADDD /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +111,6 @@
 			name = "Drink Water Reminder App";
 			packageProductDependencies = (
 				15AF6D1B2B8CB16F00F9ADDD /* SnapKit */,
-				15AF6D1D2B8CB16F00F9ADDD /* SnapKit-Dynamic */,
 			);
 			productName = "Drink Water Reminder App";
 			productReference = 15AF6CFE2B8CA76900F9ADDD /* Drink Water Reminder App.app */;
@@ -415,11 +412,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15AF6D1A2B8CB16F00F9ADDD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		15AF6D1D2B8CB16F00F9ADDD /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15AF6D1A2B8CB16F00F9ADDD /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,6 +16,8 @@ class MainView: UIView {
     var targetLabel: UILabel?
     var progressView: UIProgressView?
     var slider: UISlider?
+    var centerView: UIView?
+    var coffeeView, aquaView, teaView, colaView, yogurtView, milkshakeView, juiceView, wineView, milkView: UIView?
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -27,7 +29,7 @@ class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createComponents() {
+    func createComponents() {
         
         //MARK: -Background
         
@@ -147,6 +149,474 @@ class MainView: UIView {
             make.top.equalTo(progressView!.snp.bottom)
 
         })
+        
+        //MARK: -Center view
+        
+        centerView = {
+            let view = UIView()
+            view.backgroundColor = UIColor(red: 236/255, green: 250/255, blue: 242/255, alpha: 1)
+            view.layer.cornerRadius = 15
+            view.layer.shadowColor = UIColor.black.cgColor
+            view.layer.shadowOpacity = 0.15
+            view.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+            
+            view.layer.shadowRadius = 10
+            return view
+        }()
+        addSubview(centerView ?? UIView())
+        
+        centerView?.snp.makeConstraints({ make in
+            make.left.right.equalToSuperview().inset(30)
+            make.height.equalTo(450)
+            make.top.equalTo(slider?.snp.bottom ?? UISlider()).inset(-30)
+        })
+        
+        
+        
+        let separatorOneVertical: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor(red: 112/255, green: 234/255, blue: 146/255, alpha: 0.25)
+            return view
+        }()
+        centerView?.addSubview(separatorOneVertical)
+        separatorOneVertical.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.width.equalTo(1)
+            make.centerX.equalToSuperview().offset(-55)
+            
+        }
+        let separatorTwoVertical: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor(red: 112/255, green: 234/255, blue: 146/255, alpha: 0.25)
+            return view
+        }()
+        centerView?.addSubview(separatorTwoVertical)
+        separatorTwoVertical.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.width.equalTo(1)
+            make.centerX.equalToSuperview().offset(+55)
+            
+        }
+        
+        let separatorOneHorizontal: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor(red: 112/255, green: 234/255, blue: 146/255, alpha: 0.25)
+            return view
+        }()
+        centerView?.addSubview(separatorOneHorizontal)
+        separatorOneHorizontal.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.height.equalTo(1)
+            make.centerY.equalToSuperview().offset(+80)
+            
+        }
+        
+        let separatorTwoHorizontal: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor(red: 112/255, green: 234/255, blue: 146/255, alpha: 0.25)
+            return view
+        }()
+        centerView?.addSubview(separatorTwoHorizontal)
+        separatorTwoHorizontal.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.height.equalTo(1)
+            make.centerY.equalToSuperview().offset(-80)
+            
+        }
+        
+        coffeeView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "coffee"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "50 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-20)
+                make.height.width.equalTo(50)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Coffee"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(coffeeView ?? UIView())
+        coffeeView?.snp.makeConstraints { make in
+            make.top.left.equalToSuperview()
+            make.bottom.equalTo(separatorTwoHorizontal.snp.top)
+            make.right.equalTo(separatorOneVertical.snp.left)
+        }
+        
+        
+        aquaView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "aqua"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "100 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-20)
+                make.height.width.equalTo(50)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Aqua"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(aquaView ?? UIView())
+        aquaView?.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(separatorTwoHorizontal.snp.top)
+            make.left.equalTo(separatorOneVertical.snp.right)
+            make.right.equalTo(separatorTwoVertical.snp.left)
+        }
+        
+        
+        teaView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "tea"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "150 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-20)
+                make.height.width.equalTo(50)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Tea"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(teaView ?? UIView())
+        teaView?.snp.makeConstraints { make in
+            make.top.right.equalToSuperview()
+            make.left.equalTo(separatorTwoVertical.snp.right)
+            make.bottom.equalTo(separatorTwoHorizontal.snp.top)
+            
+        }
+        
+        
+        colaView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "cola"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "200 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-20)
+                make.height.equalTo(55)
+                make.width.equalTo(55)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Cola"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(colaView ?? UIView())
+        colaView?.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalTo(separatorTwoHorizontal.snp.bottom)
+            make.bottom.equalTo(separatorOneHorizontal.snp.top)
+            make.right.equalTo(separatorOneVertical.snp.left)
+            
+        }
+        
+        yogurtView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "Yogurt"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "250 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-20)
+                make.height.equalTo(55)
+                make.width.equalTo(55)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Yogurt"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(yogurtView ?? UIView())
+        yogurtView?.snp.makeConstraints { make in
+            make.left.equalTo(separatorOneVertical.snp.right)
+            make.top.equalTo(separatorTwoHorizontal.snp.bottom)
+            make.bottom.equalTo(separatorOneHorizontal.snp.top)
+            make.right.equalTo(separatorTwoVertical.snp.left)
+            
+        }
+        
+        
+        
+        milkshakeView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "cocktail"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "200 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-20)
+                make.height.equalTo(55)
+                make.width.equalTo(55)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Milkshake"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(milkshakeView ?? UIView())
+        milkshakeView?.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.top.equalTo(separatorTwoHorizontal.snp.bottom)
+            make.bottom.equalTo(separatorOneHorizontal.snp.top)
+            make.left.equalTo(separatorTwoVertical.snp.right)
+        }
+        
+        juiceView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "juice"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "200 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-25)
+                make.height.equalTo(55)
+                make.width.equalTo(55)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Juice"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(juiceView ?? UIView())
+        juiceView?.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalTo(separatorOneHorizontal.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.right.equalTo(separatorOneVertical.snp.left)
+        }
+        
+        wineView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "wine"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "25 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-25)
+                make.height.equalTo(55)
+                make.width.equalTo(55)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Wine"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(wineView ?? UIView())
+        wineView?.snp.makeConstraints { make in
+            make.left.equalTo(separatorOneVertical.snp.right)
+            make.top.equalTo(separatorOneHorizontal.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.right.equalTo(separatorTwoVertical.snp.left)
+        }
+        
+        
+        milkView = {
+            let view = UIView()
+            view.backgroundColor = .clear
+            let image = UIImageView(image: UIImage(named: "milk"))
+            view.addSubview(image)
+            image.tintColor = .systemGreen
+            let labelML = UILabel()
+            labelML.text = "50 ml"
+            labelML.textColor = UIColor(red: 128/255, green: 136/255, blue: 144/255, alpha: 1)
+            labelML.font = .systemFont(ofSize: 15, weight: .medium)
+            view.addSubview(labelML)
+            image.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(-25)
+                make.height.equalTo(55)
+                make.width.equalTo(55)
+            }
+            labelML.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(image.snp.bottom).inset(-10)
+            }
+            
+            let labelCoffee = UILabel()
+            labelCoffee.textColor = .separator
+            labelCoffee.font = .systemFont(ofSize: 15, weight: .light)
+            labelCoffee.text = "Milk"
+            view.addSubview(labelCoffee)
+            labelCoffee.snp.makeConstraints { make in
+                make.centerX.equalTo(image.snp.centerX)
+                make.top.equalTo(labelML.snp.bottom)
+            }
+            
+            
+            return view
+        }()
+        centerView?.addSubview(milkView ?? UIView())
+        milkView?.snp.makeConstraints { make in
+            make.left.equalTo(separatorTwoVertical.snp.right)
+            make.top.equalTo(separatorOneHorizontal.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.right.equalToSuperview()
+            
+            
+        }
+        
     }
 
 }
