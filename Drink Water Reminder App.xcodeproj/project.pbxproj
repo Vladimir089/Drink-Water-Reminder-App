@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		155797E82B8F5FF700DCA7A4 /* DailyDrinkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155797E72B8F5FF700DCA7A4 /* DailyDrinkData.swift */; };
 		15AF6D022B8CA76900F9ADDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */; };
 		15AF6D042B8CA76900F9ADDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */; };
 		15AF6D062B8CA76900F9ADDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D052B8CA76900F9ADDD /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		155797E72B8F5FF700DCA7A4 /* DailyDrinkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDrinkData.swift; sourceTree = "<group>"; };
 		15AF6CFE2B8CA76900F9ADDD /* Drink Water Reminder App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Water Reminder App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				15AF6D032B8CA76900F9ADDD /* SceneDelegate.swift */,
 				15AF6D0F2B8CA76B00F9ADDD /* Info.plist */,
 				15AF6D0A2B8CA76B00F9ADDD /* Assets.xcassets */,
+				155797E72B8F5FF700DCA7A4 /* DailyDrinkData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				15AF6D062B8CA76900F9ADDD /* ViewController.swift in Sources */,
 				15AF6D192B8CACA200F9ADDD /* MainView.swift in Sources */,
 				15AF6D022B8CA76900F9ADDD /* AppDelegate.swift in Sources */,
+				155797E82B8F5FF700DCA7A4 /* DailyDrinkData.swift in Sources */,
 				15AF6D042B8CA76900F9ADDD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
