@@ -6,21 +6,25 @@
 //
 
 import UIKit
+import SnapKit
 
 var targetDrink: Float = 3500
 var dailyDrink: Float = 0
 var weeklyData: [DayData] = []
 var lastResetDate: Date?
+var viewIndex = 0
 
 class ViewController: UIViewController {
     
+    var secondView: ChangeCellView?
     var mainView: MainView?
-    
+    var isClick = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView = MainView(frame: view.frame)
+        secondView = ChangeCellView()
         self.view = mainView
         checkDaily()
         mainView?.slider?.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
@@ -33,8 +37,68 @@ class ViewController: UIViewController {
             dailyDrink = weeklyData[todayDataIndex].drinkAmount
         }
         
+        mainView?.addButton?.addTarget(self, action: #selector(changeElement), for: .touchUpInside)
+        mainView?.changeCellView?.changeButton?.addTarget(self, action: #selector(saveButton), for: .touchUpInside)
     }
     
+    @objc func saveButton() {
+        let main = mainView?.changeCellView
+    
+        if main?.nameTextField?.text == nil || main?.mlTextField?.text == nil || main?.imageSet == nil {
+            return
+        }
+        var components = mainView?.elements
+        let ml = Int(main?.mlTextField?.text ?? "1")
+        components?[viewIndex].imageElement = main?.imageSet ?? "aqua"
+        components?[viewIndex].mililiter = ml ?? 1
+        components?[viewIndex].note = main?.nameTextField?.text ?? "text"
+        //print(components)
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(components)
+            UserDefaults.standard.set(data, forKey: "arrayComponents")
+        } catch {
+            print("Error encoding elements: \(error.localizedDescription)")
+        }
+        
+        
+        
+        loadView()
+        viewDidLoad()
+        
+        UIView.animate(withDuration: 0.7) { [self] in
+            self.mainView?.changeCellView?.alpha = 0
+            self.mainView?.addButton?.isEnabled = true
+            self.mainView?.okImageView?.alpha = 1
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            UIView.animate(withDuration: 0.7) { [self] in
+                self.mainView?.okImageView?.alpha = 0
+            }
+        }
+        
+        
+    }
+    
+    @objc func changeElement() {
+        UIView.animate(withDuration: 0.5) {
+            self.mainView?.selectLabel?.alpha = 1.0
+            self.mainView?.centerView?.layer.borderColor = UIColor.systemGreen.cgColor
+            self.mainView?.centerView?.layer.borderWidth = 2
+            self.isClick = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            UIView.animate(withDuration: 0.5) {
+                self.mainView?.selectLabel?.alpha = 0.0
+                self.mainView?.centerView?.layer.borderColor = UIColor.clear.cgColor
+                self.mainView?.centerView?.layer.borderWidth = 0
+                self.isClick = false
+            }
+        }
+        
+        return
+    }
     
     func addWaterConsumption(_ amount: Float) {
         let currentDate = Date()
@@ -116,35 +180,45 @@ class ViewController: UIViewController {
     }
     
     @objc func tapView(_ sender: UITapGestureRecognizer) {
+        let elements = mainView?.elements
         guard let tappedView = sender.view else { return }
         switch tappedView {
         case mainView?.coffeeView:
-            dailyDrink += 50
-            addWaterConsumption(50)
+            guard !checkIsClick(index: 0) else { return }
+            dailyDrink += Float(elements?[0].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[0].mililiter ?? 0))
         case mainView?.aquaView:
-            dailyDrink += 100
-            addWaterConsumption(100)
+            guard !checkIsClick(index: 1) else { return }
+            dailyDrink += Float(elements?[1].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[1].mililiter ?? 0))
         case mainView?.teaView:
-            dailyDrink += 150
-            addWaterConsumption(150)
+            guard !checkIsClick(index: 2) else { return }
+            dailyDrink += Float(elements?[2].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[2].mililiter ?? 0))
         case mainView?.colaView:
-            dailyDrink += 200
-            addWaterConsumption(200)
+            guard !checkIsClick(index: 3) else { return }
+            dailyDrink += Float(elements?[3].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[3].mililiter ?? 0))
         case mainView?.yogurtView:
-            dailyDrink += 250
-            addWaterConsumption(250)
+            guard !checkIsClick(index: 4) else { return }
+            dailyDrink += Float(elements?[4].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[4].mililiter ?? 0))
         case mainView?.milkshakeView:
-            dailyDrink += 200
-            addWaterConsumption(200)
+            guard !checkIsClick(index: 5) else { return }
+            dailyDrink += Float(elements?[5].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[5].mililiter ?? 0))
         case mainView?.juiceView:
-            dailyDrink += 200
-            addWaterConsumption(200)
+            guard !checkIsClick(index: 6) else { return }
+            dailyDrink += Float(elements?[6].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[6].mililiter ?? 0))
         case mainView?.wineView:
-            dailyDrink += 25
-            addWaterConsumption(25)
+            guard !checkIsClick(index: 7) else { return }
+            dailyDrink += Float(elements?[7].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[7].mililiter ?? 0))
         case mainView?.milkView:
-            dailyDrink += 50
-            addWaterConsumption(50)
+            guard !checkIsClick(index: 8) else { return }
+            dailyDrink += Float(elements?[8].mililiter ?? 0)
+            addWaterConsumption(Float(elements?[8].mililiter ?? 0))
         default:
             return
         }
@@ -162,7 +236,20 @@ class ViewController: UIViewController {
         })
         
         
-        
+        func checkIsClick(index: Int) -> Bool {
+            if isClick == true {
+                UIView.animate(withDuration: 0.3) {
+                    self.mainView?.changeCellView?.alpha = 1
+                    self.mainView?.addButton?.isEnabled = false
+                }
+                viewIndex = index
+                isClick = false
+                return true
+            } else {
+                return false
+            }
+            
+        }
         
     }
     

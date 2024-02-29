@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MainView: UIView {
-
+    
     //MARK: -Elements
     
     var dailyLabel: UILabel?
@@ -20,11 +20,27 @@ class MainView: UIView {
     var elements: [Element]?
     var coffeeView, aquaView, teaView, colaView, yogurtView, milkshakeView, juiceView, wineView, milkView: UIView?
     var addButton: UIButton?
+    var selectLabel: UILabel?
+    var changeCellView: ChangeCellView?
+    var okImageView: UIImageView?
     
     override init(frame: CGRect) {
         super.init(frame:frame)
+        if let data = UserDefaults.standard.data(forKey: "arrayComponents") {
+            do {
+                let decoder = JSONDecoder()
+                let components = try decoder.decode([Element].self, from: data)
+                elements = components
+            } catch {
+                print("Error decoding elements: \(error.localizedDescription)")
+            }
+        } else {
+            elements = [Element(imageElement: "coffee", mililiter: 50, note: "Coffee"), Element(imageElement: "aqua", mililiter: 100, note: "Aqua"), Element(imageElement: "tea", mililiter: 150, note: "Tea"), Element(imageElement: "cola", mililiter: 200, note: "Cola"), Element(imageElement: "Yogurt", mililiter: 250, note: "Yogurt"), Element(imageElement: "cocktail", mililiter: 200, note: "Milkshake"), Element(imageElement: "juice", mililiter: 200, note: "Juice"), Element(imageElement: "wine", mililiter: 25, note: "Wine"), Element(imageElement: "milk", mililiter: 50, note: "Milk")]
+        }
+        
         backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
         createComponents()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -76,13 +92,13 @@ class MainView: UIView {
             make.top.equalToSuperview().inset(70)
         }
         
-    dailyLabel = {
-        let label = UILabel()
-        label.text = "\(Int(dailyDrink))"
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 50, weight: .medium)
-        return label
-    }()
+        dailyLabel = {
+            let label = UILabel()
+            label.text = "\(Int(dailyDrink))"
+            label.textColor = .white
+            label.font = .systemFont(ofSize: 50, weight: .medium)
+            return label
+        }()
         addSubview(dailyLabel ?? UILabel())
         dailyLabel?.snp.makeConstraints({ make in
             make.top.equalTo(dailyDrinkTargetLabel).inset(20)
@@ -125,7 +141,7 @@ class MainView: UIView {
             progress.setProgress(dailyDrink / targetDrink, animated: true)
             return progress
         }()
-
+        
         addSubview(progressView ?? UIProgressView())
         addSubview(progressView ?? UIProgressView())
         progressView?.snp.makeConstraints({ make in
@@ -149,7 +165,7 @@ class MainView: UIView {
             make.left.right.equalToSuperview().inset(30)
             make.height.equalTo(20)
             make.top.equalTo(progressView!.snp.bottom)
-
+            
         })
         
         //MARK: -Center view
@@ -173,7 +189,11 @@ class MainView: UIView {
             make.top.equalTo(slider?.snp.bottom ?? UISlider()).inset(-30)
         })
         
-        
+        changeCellView = ChangeCellView()
+        addSubview(changeCellView!)
+        changeCellView?.snp.makeConstraints({ make in
+            make.left.right.top.bottom.equalTo(centerView ?? UIView())
+        })
         
         let separatorOneVertical: UIView = {
             let view = UIView()
@@ -226,7 +246,7 @@ class MainView: UIView {
             
         }
         
-        elements = [Element(imageElement: "coffee", mililiter: 50, note: "Coffee"), Element(imageElement: "aqua", mililiter: 100, note: "Aqua"), Element(imageElement: "tea", mililiter: 150, note: "Tea"), Element(imageElement: "cola", mililiter: 200, note: "Cola"), Element(imageElement: "Yogurt", mililiter: 250, note: "Yogurt"), Element(imageElement: "cocktail", mililiter: 200, note: "Milkshake"), Element(imageElement: "juice", mililiter: 200, note: "Juice"), Element(imageElement: "wine", mililiter: 25, note: "Wine"), Element(imageElement: "milk", mililiter: 50, note: "Milk")]
+        
         let elements = elements
         
         coffeeView = {
@@ -636,10 +656,36 @@ class MainView: UIView {
             make.height.width.equalTo(70)
             make.top.equalTo(centerView!.snp.bottom).inset(-50)
             make.centerX.equalToSuperview()
-
+            
         })
         
+        selectLabel = {
+            let label = UILabel()
+            label.text = "Select the cell to edit"
+            label.font = .systemFont(ofSize: 20, weight: .light)
+            label.textColor = .separator
+            label.alpha = 0.0
+            return label
+        }()
+        addSubview(selectLabel ?? UILabel())
+        selectLabel?.snp.makeConstraints({ make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(centerView!.snp.bottom).inset(-10)
+        })
+        
+        okImageView = {
+            let image = UIImage(named: "ok")
+            let imageView = UIImageView(image: image)
+            imageView.alpha = 0
+            return imageView
+        }()
+        addSubview(okImageView ?? UIImageView())
+        okImageView?.snp.makeConstraints({ make in
+            make.height.width.equalTo(100)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        })
     }
-
+    
 }
 
