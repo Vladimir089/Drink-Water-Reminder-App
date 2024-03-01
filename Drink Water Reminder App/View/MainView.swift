@@ -19,7 +19,7 @@ class MainView: UIView {
     var centerView: UIView?
     var elements: [Element]?
     var coffeeView, aquaView, teaView, colaView, yogurtView, milkshakeView, juiceView, wineView, milkView: UIView?
-    var addButton: UIButton?
+    var addButton, notificationButton, statButton: UIButton?
     var selectLabel: UILabel?
     var changeCellView: ChangeCellView?
     var okImageView: UIImageView?
@@ -685,6 +685,46 @@ class MainView: UIView {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         })
+        
+        notificationButton = {
+            let button = UIButton()
+            //button.setImage(UIImage(named: "bell"), for: .normal)
+            button.setImage(UIImage(systemName: "bell"), for: .normal)
+            button.backgroundColor = .white
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowOpacity = 0.4
+            button.layer.cornerRadius = 25
+            button.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+            return button
+        }()
+        addSubview(notificationButton ?? UIButton())
+        notificationButton?.snp.makeConstraints({ make in
+            make.height.width.equalTo(50)
+            make.centerX.equalTo((juiceView?.snp.centerX)!).offset(30)
+            make.centerY.equalTo((addButton?.snp.centerY)!)
+        })
+        
+        statButton = {
+            let button = UIButton()
+            
+            button.setImage(UIImage(systemName: "chart.dots.scatter"), for: .normal)
+            button.backgroundColor = .white
+            button.tintColor = .systemGray
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowOpacity = 0.4
+            button.layer.cornerRadius = 25
+            button.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+            return button
+        }()
+        addSubview(statButton ?? UIButton())
+        statButton?.snp.makeConstraints({ make in
+            make.height.width.equalTo(50)
+            make.centerX.equalTo((milkView?.snp.centerX)!).offset(-30)
+            make.centerY.equalTo((addButton?.snp.centerY)!)
+        })
+        
+        
+        
     }
     
 }

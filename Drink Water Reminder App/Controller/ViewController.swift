@@ -7,19 +7,20 @@
 
 import UIKit
 import SnapKit
+import UserNotifications
 
 var targetDrink: Float = 3500
 var dailyDrink: Float = 0
 var weeklyData: [DayData] = []
 var lastResetDate: Date?
 var viewIndex = 0
+var isNotifyClick: Bool?
 
 class ViewController: UIViewController {
     
     var secondView: ChangeCellView?
     var mainView: MainView?
     var isClick = false
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +40,82 @@ class ViewController: UIViewController {
         
         mainView?.addButton?.addTarget(self, action: #selector(changeElement), for: .touchUpInside)
         mainView?.changeCellView?.changeButton?.addTarget(self, action: #selector(saveButton), for: .touchUpInside)
+        mainView?.notificationButton?.addTarget(self, action: #selector(offOnNotify), for: .touchUpInside)
+        
+        chechNotify()
+    }
+    
+    func chechNotify() {
+        if let isNot = UserDefaults.standard.object(forKey: "notify")  {
+            isNotifyClick = isNot as? Bool
+            if isNotifyClick == false {
+                print(3)
+                mainView?.notificationButton?.tintColor = .systemGray
+            } 
+            if isNotifyClick == true{
+                mainView?.notificationButton?.tintColor = .systemGreen
+                print(4)
+            }
+        } else {
+            isNotifyClick = false // По умолчанию устанавливаем значение в false, если нет сохраненного значения
+            UserDefaults.standard.set(isNotifyClick, forKey: "notify")
+            mainView?.notificationButton?.tintColor = .systemGray
+        }
+    }
+
+    @objc func offOnNotify() {
+        chechNotify()
+        let center = UNUserNotificationCenter.current()
+        if isNotifyClick == false {
+            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+                if granted {
+                    let content = UNMutableNotificationContent()
+                    content.title = "Notify!"
+                    content.body = "Drink water!"
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3 * 60 * 60, repeats: false)
+                    var dateComponents = DateComponents()
+                    dateComponents.hour = 9
+                    dateComponents.minute = 0
+                    let fromDate = Calendar.current.date(from: dateComponents)!
+                    
+                    dateComponents.hour = 22
+                    let toDate = Calendar.current.date(from: dateComponents)!
+                    
+                    let request = UNNotificationRequest(identifier: "PeriodicNotification", content: content, trigger: trigger)
+                    
+                    center.add(request) { (error) in
+                        if let error = error {
+                            print("Error: \(error.localizedDescription)")
+                        } else {
+                            print("Periodic notification scheduled")
+                        }
+                    }
+                    
+                } else {
+                    print("Permission for notifications not granted")
+                }
+            }
+            isNotifyClick = true
+            UserDefaults.standard.set(isNotifyClick, forKey: "notify")
+            print(1)
+            print(isNotifyClick)
+            chechNotify()
+            return
+        }
+        if isNotifyClick == true {
+            print(2)
+            center.removePendingNotificationRequests(withIdentifiers: ["PeriodicNotification"])
+            isNotifyClick = false
+            UserDefaults.standard.set(isNotifyClick, forKey: "notify")
+            print(isNotifyClick)
+            chechNotify()
+            return
+        }
     }
     
     @objc func saveButton() {
         let main = mainView?.changeCellView
-    
+        
         if main?.nameTextField?.text == nil || main?.mlTextField?.text == nil || main?.imageSet == nil {
             return
         }
@@ -77,8 +149,6 @@ class ViewController: UIViewController {
                 self.mainView?.okImageView?.alpha = 0
             }
         }
-        
-        
     }
     
     @objc func changeElement() {
@@ -118,7 +188,7 @@ class ViewController: UIViewController {
         UserDefaults.standard.set(lastResetDate, forKey: "LastResetDate")
         saveWeeklyData()
     }
-
+    
     func loadWeeklyData() {
         if let savedData = UserDefaults.standard.data(forKey: "WeeklyData2"),
            let decodedData = try? JSONDecoder().decode([DayData].self, from: savedData) {
