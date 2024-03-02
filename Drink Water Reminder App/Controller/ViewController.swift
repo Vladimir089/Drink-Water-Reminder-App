@@ -41,8 +41,14 @@ class ViewController: UIViewController {
         mainView?.addButton?.addTarget(self, action: #selector(changeElement), for: .touchUpInside)
         mainView?.changeCellView?.changeButton?.addTarget(self, action: #selector(saveButton), for: .touchUpInside)
         mainView?.notificationButton?.addTarget(self, action: #selector(offOnNotify), for: .touchUpInside)
+        mainView?.statButton?.addTarget(self, action: #selector(nextPageStat), for: .touchUpInside)
         
         chechNotify()
+    }
+    
+    @objc func nextPageStat() {
+        let nextViewController = StatUIViewController()
+        self.present(nextViewController, animated: true, completion: nil)
     }
     
     func chechNotify() {
@@ -124,7 +130,6 @@ class ViewController: UIViewController {
         components?[viewIndex].imageElement = main?.imageSet ?? "aqua"
         components?[viewIndex].mililiter = ml ?? 1
         components?[viewIndex].note = main?.nameTextField?.text ?? "text"
-        //print(components)
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(components)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15001C932B925D9D00F57264 /* StatUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15001C922B925D9D00F57264 /* StatUIViewController.swift */; };
+		15001C952B937E3500F57264 /* secondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15001C942B937E3500F57264 /* secondView.swift */; };
 		155797E82B8F5FF700DCA7A4 /* DailyDrinkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155797E72B8F5FF700DCA7A4 /* DailyDrinkData.swift */; };
 		155797EA2B90C31A00DCA7A4 /* ChangeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155797E92B90C31A00DCA7A4 /* ChangeCellView.swift */; };
 		15AF6D022B8CA76900F9ADDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6D012B8CA76900F9ADDD /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		15001C922B925D9D00F57264 /* StatUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatUIViewController.swift; sourceTree = "<group>"; };
+		15001C942B937E3500F57264 /* secondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondView.swift; sourceTree = "<group>"; };
 		155797E72B8F5FF700DCA7A4 /* DailyDrinkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDrinkData.swift; sourceTree = "<group>"; };
 		155797E92B90C31A00DCA7A4 /* ChangeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCellView.swift; sourceTree = "<group>"; };
 		15AF6CFE2B8CA76900F9ADDD /* Drink Water Reminder App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Water Reminder App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				15AF6D0C2B8CA76B00F9ADDD /* LaunchScreen.storyboard */,
 				15AF6D182B8CACA200F9ADDD /* MainView.swift */,
 				155797E92B90C31A00DCA7A4 /* ChangeCellView.swift */,
+				15001C942B937E3500F57264 /* secondView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			files = (
 				15AF6D062B8CA76900F9ADDD /* ViewController.swift in Sources */,
 				15AF6D192B8CACA200F9ADDD /* MainView.swift in Sources */,
+				15001C952B937E3500F57264 /* secondView.swift in Sources */,
 				15AF6D022B8CA76900F9ADDD /* AppDelegate.swift in Sources */,
 				155797E82B8F5FF700DCA7A4 /* DailyDrinkData.swift in Sources */,
 				15001C932B925D9D00F57264 /* StatUIViewController.swift in Sources */,
