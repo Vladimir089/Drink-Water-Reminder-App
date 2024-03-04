@@ -20,9 +20,7 @@ class StatUIViewController: UIViewController {
         super.viewDidLoad()
         mainView = secondView(frame: view.frame)
         self.view = mainView
-        changeStat()
-        mainView?.buttonDropDownMenu?.addTarget(self, action: #selector(menuTapped), for: .touchUpInside)
-        changeStat()
+        changeStat(isMenuOpen: isMenuOpen)
     }
     		
     func animateCircularProgressBar(count: Float) {
@@ -33,6 +31,8 @@ class StatUIViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue = (count/targetDrink)
         basicAnimation.duration = 2 // Продолжительность анимации
+        mainView?.remainingLabel?.text = "\(Int(count)) ml"
+        mainView?.targetLabel?.text = "\(Int(targetDrink)) ml"
         print(count)
         print(targetDrink)
         basicAnimation.fillMode = .forwards
@@ -41,22 +41,22 @@ class StatUIViewController: UIViewController {
         mainView?.progressLayer.add(basicAnimation, forKey: "progressAnimation")
     }
     
-    @objc func menuTapped() {
-        isMenuOpen.toggle()
-        
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            guard let self = self else { return }
-            print(1)
-            // Вращаем изображение на 180 градусов, если меню открыто, и возвращаем в исходное положение, если закрыто
-            self.mainView?.arrowDownImageView?.transform = self.isMenuOpen ? CGAffineTransform(rotationAngle: .pi) : .identity
-        }
-    }
+    
     
     
 
     
-    func changeStat() {
+    func changeStat(isMenuOpen: Bool) {
         var i: Float = 0
+        
+        if isMenuOpen == false {
+            if weeklyData.count > 0 {
+                i = weeklyData[0].drinkAmount
+                self.animateCircularProgressBar(count: i)
+                self.isMenuOpen = true
+            }
+        }
+        
         mainView?.actionClosure = { selectedFruit in
             print("Выбрано: \(selectedFruit)")
             switch selectedFruit {

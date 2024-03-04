@@ -15,7 +15,8 @@ class secondView: UIView {
     var actionClosure: ((String) -> Void)?
     var arrowDownImageView: UIImageView?
     var corneredBorderView: UIView?
-    var labelProcent: UILabel?
+    var labelProcent, remainingLabel, targetLabel: UILabel?
+    
 
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -134,6 +135,49 @@ class secondView: UIView {
             make.top.equalToSuperview().inset(50)
         }
         
+       
+        
+        let whiteViewOne: UIView = {
+            let view = UIView()
+            view.backgroundColor =  .white
+            view.layer.cornerRadius = 80
+            return view
+        }()
+        
+        corneredBorderView?.addSubview(whiteViewOne)
+        whiteViewOne.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(160)
+        }
+        
+        let separatorView: UIView = {
+            let view = UIView()
+            view.backgroundColor =  .systemGray6
+            view.layer.cornerRadius = 72.5
+            return view
+        }()
+        
+        whiteViewOne.addSubview(separatorView)
+        separatorView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(145)
+        }
+        
+        let whiteViewTwo: UIView = {
+            let view = UIView()
+            view.backgroundColor =  .white
+            view.layer.cornerRadius = 71.5
+            return view
+        }()
+        
+        separatorView.addSubview(whiteViewTwo)
+        whiteViewTwo.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(143)
+        }
+        
+        
+        
         labelProcent = {
             let label = UILabel()
             
@@ -141,11 +185,63 @@ class secondView: UIView {
             label.textColor = .systemGreen
             return label
         }()
-        corneredBorderView?.addSubview(labelProcent ?? UILabel())
+        whiteViewTwo.addSubview(labelProcent ?? UILabel())
         labelProcent?.snp.makeConstraints({ make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         })
+        
+        
+        let textTargetLabel: UILabel = {
+            let label = UILabel()
+            label.text = "Target"
+            label.font = .systemFont(ofSize: 14, weight: .bold)
+            label.textColor = .separator
+            return label
+        }()
+        centerView.addSubview(textTargetLabel)
+        textTargetLabel.snp.makeConstraints { make in
+            make.top.equalTo((corneredBorderView?.snp.bottom)!).inset(-20)
+            make.right.equalTo((corneredBorderView?.snp.right)!)
+        }
+        
+        let textRemainingLabel: UILabel = {
+            let label = UILabel()
+            label.text = "Remaining"
+            label.font = .systemFont(ofSize: 14, weight: .bold)
+            label.textColor = .separator
+            return label
+        }()
+        centerView.addSubview(textRemainingLabel)
+        textRemainingLabel.snp.makeConstraints { make in
+            make.top.equalTo((corneredBorderView?.snp.bottom)!).inset(-20)
+            make.left.equalTo((corneredBorderView?.snp.left)!)
+        }
+        
+        remainingLabel = {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 20, weight: .bold)
+            label.text = "0 ml"
+            return label
+        }()
+        centerView.addSubview(remainingLabel ?? UILabel())
+        remainingLabel?.snp.makeConstraints({ make in
+            make.centerX.equalTo(textRemainingLabel)
+            make.top.equalTo(textRemainingLabel.snp.bottom).inset(-5)
+        })
+        
+        targetLabel = {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 20, weight: .bold)
+            label.text = "0 ml"
+            return label
+        }()
+        centerView.addSubview(targetLabel ?? UILabel())
+        targetLabel?.snp.makeConstraints({ make in
+            make.centerX.equalTo(textTargetLabel)
+            make.top.equalTo(textTargetLabel.snp.bottom).inset(-5)
+        })
+        
         
         setupCircularProgressBar()
         
