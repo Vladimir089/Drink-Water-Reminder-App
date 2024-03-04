@@ -15,6 +15,7 @@ class secondView: UIView {
     var actionClosure: ((String) -> Void)?
     var arrowDownImageView: UIImageView?
     var corneredBorderView: UIView?
+    var labelProcent: UILabel?
 
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -132,6 +133,20 @@ class secondView: UIView {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(50)
         }
+        
+        labelProcent = {
+            let label = UILabel()
+            
+            label.font = .systemFont(ofSize: 30, weight: .medium)
+            label.textColor = .systemGreen
+            return label
+        }()
+        corneredBorderView?.addSubview(labelProcent ?? UILabel())
+        labelProcent?.snp.makeConstraints({ make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        })
+        
         setupCircularProgressBar()
         
     }
@@ -155,12 +170,13 @@ class secondView: UIView {
         progressLayer.strokeEnd = 0
 
         corneredBorderView.layer.addSublayer(progressLayer)
-        вв
+        
     }
 
 
     
-
+    
+    
     
     
     

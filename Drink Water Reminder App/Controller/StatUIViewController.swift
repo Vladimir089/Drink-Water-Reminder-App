@@ -7,10 +7,13 @@
 
 import UIKit
 
+var countDay: Float?
+
 class StatUIViewController: UIViewController {
     
     var mainView: secondView?
     var isMenuOpen = false
+    
     
 
     override func viewDidLoad() {
@@ -19,18 +22,22 @@ class StatUIViewController: UIViewController {
         self.view = mainView
         changeStat()
         mainView?.buttonDropDownMenu?.addTarget(self, action: #selector(menuTapped), for: .touchUpInside)
-        animateCircularProgressBar()
+        changeStat()
     }
-    
-    func animateCircularProgressBar() {
+    		
+    func animateCircularProgressBar(count: Float) {
+        //сделать так чтобы по дефолту стоял Today
+        let formetter = NumberFormatter()
+        formetter.maximumFractionDigits = 1
+        mainView?.labelProcent?.text = "\(String(format: "%.1f", floor((count/targetDrink)*100)))%"
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        вв  
-        basicAnimation.toValue = 0.7 // Пример: 70% завершено
+        basicAnimation.toValue = (count/targetDrink)
         basicAnimation.duration = 2 // Продолжительность анимации
-
+        print(count)
+        print(targetDrink)
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
-        mainView?.progressLayer.lineDashPattern = [NSNumber(value: 1), NSNumber(value: 10)] // Пример: пять точек, пять пробелов
+        mainView?.progressLayer.lineDashPattern = [NSNumber(value: 1), NSNumber(value: 10)]
         mainView?.progressLayer.add(basicAnimation, forKey: "progressAnimation")
     }
     
@@ -44,14 +51,58 @@ class StatUIViewController: UIViewController {
             self.mainView?.arrowDownImageView?.transform = self.isMenuOpen ? CGAffineTransform(rotationAngle: .pi) : .identity
         }
     }
+    
+    
 
     
     func changeStat() {
+        var i: Float = 0
         mainView?.actionClosure = { selectedFruit in
             print("Выбрано: \(selectedFruit)")
-            // Здесь вы можете выполнять дополнительные действия с выбранным фруктом
+            switch selectedFruit {
+            case "Today":
+                if weeklyData.count > 0 {
+                    i = weeklyData[0].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            case "Yesterday":
+                if weeklyData.count > 1 {
+                    i = weeklyData[1].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            case "2 days ago":
+                if weeklyData.count > 2 {
+                    i = weeklyData[2].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            case "3 days ago":
+                if weeklyData.count > 3 {
+                    i = weeklyData[3].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            case "4 days ago":
+                if weeklyData.count > 4 {
+                    i = weeklyData[4].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            case "5 days ago":
+                if weeklyData.count > 5 {
+                    i = weeklyData[5].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            case "6 days ago":
+                if weeklyData.count > 6 {
+                    i = weeklyData[6].drinkAmount
+                    self.animateCircularProgressBar(count: i)
+                }
+            default:
+                return
+            }
         }
+       
     }
+    
+    
 
 }
 

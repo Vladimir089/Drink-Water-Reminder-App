@@ -198,6 +198,7 @@ class ViewController: UIViewController {
         if let savedData = UserDefaults.standard.data(forKey: "WeeklyData2"),
            let decodedData = try? JSONDecoder().decode([DayData].self, from: savedData) {
             weeklyData = decodedData
+            print(weeklyData)
         } else {
             resetWeeklyData()
         }
